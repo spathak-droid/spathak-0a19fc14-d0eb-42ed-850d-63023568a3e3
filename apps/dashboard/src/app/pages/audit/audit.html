@@ -1,0 +1,73 @@
+<section class="p-8 bg-gradient-to-br from-cyan-400 to-orange-400 min-h-screen">
+  <div class="max-w-3xl mx-auto">
+
+    <!-- Back Button -->
+    <button
+      mat-icon-button
+      class="flex items-center gap-2 text-white hover:text-gray-200 mb-4 -ml-1"
+      (click)="goBack()"
+    >
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+
+    <div class="flex justify-between items-center mb-8">
+      <h2 class="text-3xl font-bold text-white drop-shadow">
+        📊 Audit Report
+      </h2>
+
+      <button
+        mat-raised-button
+        class="text-white border-white hover:bg-white hover:text-[#00bcd4] transition-all"
+        (click)="downloadAudit()"
+      >
+        Download
+      </button>
+    </div>
+
+
+    <!-- Top Stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+      <div class="bg-white p-4 rounded-xl shadow text-center">
+        <h3 class="font-semibold text-gray-700">Total</h3>
+        <p class="text-2xl font-bold text-gray-900">{{ stats?.total }}</p>
+      </div>
+
+      <div class="bg-white p-4 rounded-xl shadow text-center">
+        <h3 class="font-semibold text-gray-700">Completed</h3>
+        <p class="text-2xl font-bold text-green-600">{{ stats?.done }}</p>
+      </div>
+
+      <div class="bg-white p-4 rounded-xl shadow text-center">
+        <h3 class="font-semibold text-gray-700">In Progress</h3>
+        <p class="text-2xl font-bold text-yellow-600">{{ stats?.progress }}</p>
+      </div>
+
+      <div class="bg-white p-4 rounded-xl shadow text-center">
+        <h3 class="font-semibold text-gray-700">TODO</h3>
+        <p class="text-2xl font-bold text-blue-600">{{ stats?.todo }}</p>
+      </div>
+    </div>
+
+    <!-- Completion Rate -->
+    <div class="bg-white p-6 rounded-xl shadow mb-10">
+      <h3 class="font-bold text-gray-700 mb-2">Completion Rate</h3>
+      <p class="text-4xl font-extrabold text-purple-600">{{ stats?.percent }}%</p>
+    </div>
+
+    <!-- Owner-only: org breakdown -->
+    @if (stats?.orgBreakdown?.length) {
+      <h3 class="text-2xl font-semibold text-white mb-4 drop-shadow">Organization Breakdown</h3>
+
+      <div class="space-y-4">
+        @for (org of stats.orgBreakdown; track org.name) {
+          <div class="bg-white p-4 rounded-xl shadow">
+            <h4 class="font-bold text-gray-800">{{ org.name }}</h4>
+            <p class="text-sm text-gray-600">Total: {{ org.total }}</p>
+            <p class="text-sm text-gray-600">Done: {{ org.done }}</p>
+          </div>
+        }
+      </div>
+    }
+
+  </div>
+</section>

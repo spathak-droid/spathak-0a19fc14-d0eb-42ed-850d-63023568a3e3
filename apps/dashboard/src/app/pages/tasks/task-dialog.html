@@ -1,0 +1,77 @@
+<h2 mat-dialog-title class="text-xl font-semibold text-center ">
+  {{ isEdit ? 'Edit Task' : 'Create Task' }}
+</h2>
+
+<form [formGroup]="form" class="space-y-4 p-4">
+
+  <!-- TITLE -->
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Title</mat-label>
+    <input matInput formControlName="title" />
+  </mat-form-field>
+
+  <!-- DESCRIPTION -->
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+  </mat-form-field>
+
+  <!-- ORGANIZATION (always visible, disabled for admin) -->
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Organization</mat-label>
+
+    <mat-select
+      formControlName="organizationId"
+      [disabled]="!showOrgSelect"
+    >
+      @for (org of organizations; track org.id) {
+        <mat-option [value]="org.id">
+          {{ org.name }}
+        </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <!-- ASSIGN TO -->
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Assign To</mat-label>
+    <mat-select formControlName="assignedToId">
+      @for (u of users; track u.id) {
+        <mat-option [value]="u.id">
+          {{ u.name }} ({{ u.email }})
+        </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-full">
+  <mat-label>Category</mat-label>
+  <mat-select formControlName="category">
+    <mat-option value="work">Work</mat-option>
+    <mat-option value="personal">Personal</mat-option>
+    <mat-option value="other">Other</mat-option>
+  </mat-select>
+</mat-form-field>
+
+  <!-- STATUS -->
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Status</mat-label>
+    <mat-select formControlName="status">
+      <mat-option value="TODO">TODO</mat-option>
+      <mat-option value="IN_PROGRESS">IN PROGRESS</mat-option>
+      <mat-option value="DONE">DONE</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- ACTION BUTTONS -->
+  <div class="flex justify-end gap-2">
+    <button mat-stroked-button color="warn" type="button" (click)="close()">
+      Cancel
+    </button>
+
+    <button mat-raised-button color="primary" type="button" (click)="save()">
+      {{ isEdit ? 'Update' : 'Create' }}
+    </button>
+  </div>
+
+</form>

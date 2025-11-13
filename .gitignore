@@ -1,15 +1,77 @@
-# See https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+# ---------------------------
+# 🤖 GENERAL BUILD OUTPUT
+# ---------------------------
+dist/
+tmp/
+out-tsc/
+build/
+coverage/
+.nx/cache/
+.nx/workspace-data/
+.angular/
+.angular/cache/
 
-# compiled output
-dist
-tmp
-out-tsc
+# ---------------------------
+# 📦 DEPENDENCIES
+# ---------------------------
+node_modules/
 
-# dependencies
-node_modules
+# TypeScript declaration maps
+*.d.ts.map
 
-# IDEs and editors
-/.idea
+# Source maps
+*.js.map
+
+# Build outputs
+dist/
+out-tsc/
+
+
+# ---------------------------
+# 🔐 ENVIRONMENT FILES
+# ---------------------------
+.env
+.env.*
+*.local.env
+*.dev.env
+*.prod.env
+apps/**/.env
+apps/**/.env.*
+libs/**/.env
+!.env.example
+!.env.sample
+
+# Angular environment.ts files generated at build time
+apps/**/src/environments/environment.ts
+apps/**/src/environments/environment.prod.ts
+
+# ---------------------------
+# 📝 LOG FILES
+# ---------------------------
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+pnpm-debug.log
+testem.log
+libpeerconnection.log
+logs/
+*.log
+
+# ---------------------------
+# 🧪 TEST OUTPUT
+# ---------------------------
+test-output/
+coverage/
+.karma*
+.mocha*
+.cypress/
+playwright-report/
+test-results/
+
+# ---------------------------
+# 🛠 IDEs & EDITORS
+# ---------------------------
+.idea/
 .project
 .classpath
 .c9/
@@ -17,28 +79,37 @@ node_modules
 .settings/
 *.sublime-workspace
 
-# IDE - VSCode
+# VSCode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
 
-# misc
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
-npm-debug.log
-yarn-error.log
-testem.log
-/typings
+.env
 
-# System Files
+# ---------------------------
+# 🧵 MISC, TEMP, TRASH
+# ---------------------------
+.sass-cache/
+connect.lock
+typings/
+tsconfig.tsbuildinfo
+
+# ---------------------------
+# 🖥 SYSTEM FILES
+# ---------------------------
 .DS_Store
 Thumbs.db
+*.swp
+*.swm
+*.swo
+*.tmp
+*.bak
 
-.nx/cache
-.nx/workspace-data
+# ---------------------------
+# 🤖 GIT SUBMODULES / META
+# ---------------------------
+.git/modules/
 .cursor/rules/nx-rules.mdc
 .github/instructions/nx.instructions.md

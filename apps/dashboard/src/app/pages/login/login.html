@@ -1,0 +1,59 @@
+<section
+  class="flex flex-col items-center justify-center min-h-[calc(100dvh-64px)] bg-gradient-to-br from-cyan-400 to-orange-400 p-8 box-border overflow-hidden"
+>
+  <mat-card class="w-full max-w-[400px] bg-white rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.2)] p-8">
+    <mat-card-header class="text-center mb-4">
+      <mat-card-title class="text-2xl font-normal text-gray-800">
+        Login
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form
+        (ngSubmit)="onSubmit()"
+        #loginForm="ngForm"
+        class="flex flex-col space-y-4"
+      >
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            type="email"
+            name="email"
+            [(ngModel)]="credentials.email"
+            required
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            type="password"
+            name="password"
+            [(ngModel)]="credentials.password"
+            required
+          />
+        </mat-form-field>
+
+        @if (error) {
+          <p class="text-red-600 text-sm mt-[-8px]">{{ error }}</p>
+        }
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="!loginForm.form.valid"
+          class="w-full font-semibold"
+        >
+          Login
+        </button>
+      </form>
+
+      <p class="text-center mt-4">
+        Don’t have an account? Contact Admin at your Organization
+      </p>
+    </mat-card-content>
+  </mat-card>
+</section>
