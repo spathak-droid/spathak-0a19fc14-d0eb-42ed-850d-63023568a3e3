@@ -4,7 +4,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { User } from '@proj/data';
-// import { RoleService } from '../../../../apps/api/src/app/role/role.service.js';
 
 @Injectable()
 export class AuthService {
@@ -12,7 +11,6 @@ export class AuthService {
     @InjectRepository(User)
     private readonly userRepo: Repository<User>,
     private readonly jwtService: JwtService,
-    // private readonly roleService: RoleService
   ) {}
 
   async validateUser(email: string, password: string): Promise<any> {
@@ -52,7 +50,6 @@ export class AuthService {
     this.collectPermissions(user.role, permSet);
     const permissions = Array.from(permSet);
 
-    // const effectivePerms = await this.roleService.getEffectivePermissions(user.role.id);
 
     const payload = {
       sub: user.id,
@@ -60,7 +57,6 @@ export class AuthService {
       role: user.role.name,
       orgId: user.organization.id,
       permissions
-      // permissions: effectivePerms.map(p => p.name),
     };
 
     const accessToken = this.jwtService.sign(payload);

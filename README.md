@@ -16,6 +16,8 @@ This repository is an **NX Monorepo** containing:
 ```bash
 git clone git@github.com:spathak-droid/spathak-0a19fc14-d0eb-42ed-850d-63023568a3e3.git
 cd spathak-0a19fc14-d0eb-42ed-850d-63023568a3e3
+
+change your branch to dev branch
 ```
 
 ## 🌍 2. Environment Variables
